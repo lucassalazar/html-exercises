@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Exercícios HTML</title>
+  <style>
+    #conteudo {
+      padding: 30px 0px; /* Espaçamento em cima e embaixo apenas*/
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Exercícios HTML</h1>
+  </header>
+  <nav>
+    <a href wm-nav="4-exercicios/teste.html">00 - Teste</a> |
+    <a href wm-nav="4-exercicios/texto1.html">01 - Texto 1</a> |
+    <a href wm-nav="4-exercicios/texto2.html">02 - Texto 2</a> |
+    <a href wm-nav="4-exercicios/listas.html">03 - Listas</a> |
+    <a href wm-nav="4-exercicios/listaAninhada2.html">04 - Lista Aninhada</a> |
+    <a href wm-nav="4-exercicios/links.html">05 - Links</a> |
+    <a href wm-nav="4-exercicios/tabela.html">06 - Tabela</a> |
+    <a href wm-nav="4-exercicios/form/form.html">07 - Formulário</a> |
+    <a href wm-nav="4-exercicios/imagens.html">08 - Imagens</a> |
+    <a href wm-nav="4-exercicios/video.html">09 - Video</a> |
+    <a href wm-nav="4-exercicios/tagsNaoVisuais.html">10 - Tags Não Visuais</a> |
+  </nav>
+  <section id="conteudo"></section>
+  <footer>
+    Estudo de HTML
+  </footer>
+  <script>
+    document.querySelectorAll('[wm-nav]').forEach(link => {
+      //console.log(link);
+      const conteudo = document.getElementById('conteudo');
+      link.onclick = function (e) { // Uma função closure, pois internamente acessa a constante conteudo
+        e.preventDefault(); // Previne que o comportamento padrão da tag em questão aconteça
+        //console.log('ação!');
+        fetch(link.getAttribute('wm-nav')) // Fetch executa uma requisição AJAX
+          .then(resp => resp.text())
+          .then(html => conteudo.innerHTML = html);
+      }
+    });
+  </script>
+</body>
+</html>

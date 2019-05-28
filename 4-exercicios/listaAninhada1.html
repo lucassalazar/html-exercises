@@ -1,0 +1,99 @@
+<h1>Projeto</h1>
+<ul class="tree">
+  <li id="backend" onclick="hideShowBackend()">
+    backend
+    <ul>
+      <li id="app" onclick="hideShowApp()">
+        app
+        <ul>
+          <li>produto.js</li>
+          <li>usuario.js</li>
+          <li>venda.js</li>
+        </ul>
+      </li>
+      <li id="config" onclick="hideShowConfig()">
+        config
+        <ul>
+          <li>banco.js</li>
+          <li>rotas.js</li>
+          <li>servidor.js</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li id="frontend" onclick="hideShowFrontend()">
+    frontend
+    <ul>
+      <li id="public" onclick="hideShowPublic()">
+        public
+        <ul>
+          <li>app.css</li>
+          <li>app.js</li>
+          <li>index.html</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<link rel="stylesheet" href="http://files.cod3r.com.br/curso-web/tree.css">
+<script>
+  function hideShowBackend() {
+    let element = document.querySelector('#backend').childNodes;
+    if(element[1].style.display === 'none') {
+      element[1].style.display = 'block'
+    } else {
+      element[1].style.display = 'none';
+    }
+  }
+
+  function hideShowApp() {
+    let element = document.querySelector('#app').childNodes;
+    if(element[1].style.display === 'none') {
+      element[1].style.display = 'block'
+      hideShowBackend();
+    } else {
+      element[1].style.display = 'none';
+      hideShowBackend();
+    }
+  }
+
+  function hideShowConfig() {
+    let element = document.querySelector('#config').childNodes;
+    if(element[1].style.display === 'none') {
+      element[1].style.display = 'block'
+      hideShowBackend();
+    } else {
+      element[1].style.display = 'none';
+      hideShowBackend();
+    }
+  }
+
+  function hideShowFrontend() {
+    let element = document.querySelector('#frontend').childNodes;
+    if(element[1].style.display === 'none') {
+      element[1].style.display = 'block'
+    } else {
+      element[1].style.display = 'none';
+    }
+  }
+
+  function hideShowPublic() {
+    let element = document.querySelector('#public').childNodes;
+    if(element[1].style.display === 'none') {
+      element[1].style.display = 'block'
+      hideShowFrontend();
+    } else {
+      element[1].style.display = 'none';
+      hideShowFrontend();
+    }
+  }
+  
+  //document.querySelector('#backend').addEventListener("click", hideShowBackend);
+  //document.querySelector('#app').addEventListener('click', hideShowApp);
+  //document.querySelector('#config').addEventListener("click", hideShowConfig);
+  //document.querySelector('#frontend').addEventListener("click", hideShowFrontend);
+  //document.querySelector('#public').addEventListener("click", hideShowPublic);
+  
+
+</script>

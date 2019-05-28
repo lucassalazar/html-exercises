@@ -1,0 +1,136 @@
+<div wm-slider>
+  <p>
+    <img
+      src="https://images.unsplash.com/photo-1545670723-196ed0954986?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=752&q=80"
+      width="513" height="342" alt="Computador em cima da Mesa" title="Computer by Joshua Aragon">
+  </p>
+
+  <p>
+    <img src="https://media3.giphy.com/media/yl3XErRq8qmmA/giphy.gif" alt="Matrix Gif" width="513" height="342">
+  </p>
+
+  <p class="circular">
+    <img src="http://files.cod3r.com.br/curso-web/imagem3.png" alt="imagem circular" height="342">
+  </p>
+
+  <p class="texto">
+    <img src="http://files.cod3r.com.br/curso-web/avatar.jpg" alt="avatar" height="50" align="left">
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum quasi corporis nihil, doloremque dicta iste magnam
+    eaque enim eligendi cupiditate eos repudiandae. Mollitia tenetur repellat temporibus? Inventore odit in atque!
+  </p>
+
+  <p class="cidade"></p>
+
+  <p>
+    <picture>
+      <source srcset="http://files.cod3r.com.br/curso-web/logo-larga.png" media="(min-width:600px)">
+      <img src="http://files.cod3r.com.br/curso-web/logo-estreita.png" alt="Logo">
+    </picture>
+  </p>
+</div>
+
+
+<style>
+  p {
+    position: absolute;
+    display: none;
+  }
+
+  .circular {
+    width: 513px;
+    background-color: #444;
+  }
+
+  .texto {
+    width: 400px;
+  }
+
+  .texto img {
+    margin-right: 5px;
+  }
+
+  .cidade {
+    width: 512px;
+    height: 342px;
+    background-image: url('http://files.cod3r.com.br/curso-web/imagem4.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 200%;
+    /*zoom*/
+  }
+</style>
+
+<script>
+  // const paragrafos = [];
+
+  // document.querySelectorAll('p').forEach(paragrafo => {
+  //   paragrafos.push(paragrafo);
+  // });
+
+  // let indiceParagrafos = 0;
+
+  // const wmslider = document.querySelector('[wm-slider]');
+
+  // let start = wmslider.offsetWidth;
+
+  // const finish = 0;
+
+  // const interval = 7;
+
+  // setInterval(move, 15);
+
+  // function move() {
+  //   if (start < -paragrafos[indiceParagrafos].clientWidth) {
+  //     start = wmslider.offsetWidth;
+  //     paragrafos[indiceParagrafos].style.display = 'none';
+  //     if (indiceParagrafos >= paragrafos.length - 1) {
+  //       indiceParagrafos = 0;
+  //     } else {
+  //       indiceParagrafos++;
+  //     }
+  //   } else {
+  //     paragrafos[indiceParagrafos].style.display = 'block';
+  //     start -= interval;
+  //     paragrafos[indiceParagrafos].style.left = start + 'px';
+  //   }
+  // }
+
+  function slider() {
+    const elementos = document.querySelectorAll('[wm-slider] > p'); // querySelectorAll retorna uma nodeList
+    const slides = Array.from(elementos); // from transforma a nodeList em um array
+    console.log(slides);
+    exibirSlide(slides, slides[0]);
+  }
+
+  function exibirSlide(slides, slide) {
+    slide.style.display = 'block';
+
+    const inicio = innerWidth; // window.innerWidth
+    const fim = -slide.clientWidth;
+
+    slide.style.left = `${inicio}px`;
+
+    mover(slide, inicio, fim, 5, () => {
+      slide.style.display = 'none';
+
+      exibirSlide(slides, getProximo(slides, slide));
+    });
+  }
+
+  function mover(elem, inicio, fim, passo, callback) {
+    const novoInicio = inicio - passo;
+    if (novoInicio >= fim) {
+      elem.style.left = novoInicio + 'px';
+      setTimeout(() => mover(elem, novoInicio, fim, passo, callback), 1);
+    } else {
+      callback();
+    }
+  }
+
+  function getProximo(lista, atual) {
+    const i = lista.indexOf(atual) + 1;
+    return i < lista.length ? lista[i] : lista[0];
+  }
+
+  slider();
+</script>

@@ -1,0 +1,83 @@
+<video id="meuVideo" width="800px" height="450px" controls autoplay controlsList="nodownload">
+    <source src="http://files.cod3r.com.br/curso-web/video.mp4" type="video/mp4">
+    Your browser doesn't support HTML5 video.
+</video>
+
+<div wm-progresso="meuVideo" class="progresso">
+    <div></div>
+</div> <!-- O barra de progresso esta associada ao video #meuVideo  -->
+
+<div>
+    <button wm-play="meuVideo">Play</button>
+    <button wm-pause="meuVideo">Pause</button>
+</div>
+
+<style>
+    .progresso {
+        height: 20px;
+        width: 500px;
+        border: solid 1px #444;
+        margin: 20px;
+    }
+
+    .progresso > div {
+        background-color: red;
+        color: #fff;
+        height: 100%;
+        width: 0%;
+        text-align: center;
+        font-size: 14px;
+    }
+</style>
+
+<script>
+    // const video = document.querySelector('#meuVideo');
+    // const playBtn = document.querySelector('[wm-play]');
+    // const pauseBtn = document.querySelector('[wm-pause]');
+    // const barraProgresso = document.querySelector('[wm-progresso] > div');
+
+    // video.oncontextmenu = () => false; // Inibe a abertura do menu com o clique do botão direito do mouse (Previne que o video seja salvo)
+
+    // playBtn.addEventListener('click', () => {
+    //     video.play();
+    // });
+
+    // pauseBtn.addEventListener('click', () => {
+    //     video.pause();
+    // });
+
+    // video.addEventListener('timeupdate', () => {
+    //     let value = (video.currentTime * 100) / video.duration;    
+    //     console.log(value);
+    //     barraProgresso.style.width = value + "%";
+    // })
+
+    // video.duration    ---- 100%
+    // video.currentTime ---- x
+
+    // video.duration * x = video.currentTime * 100%
+    // x = (video.currentTime * 100) / video.duration
+    // x = (100 / video.duration) * video.currentTime;
+
+    function configurarVideo(id) {
+        const video = document.getElementById(id);
+        video.oncontextmenu = () => false;
+        
+        document.querySelector(`[wm-play=${id}]`).onclick = e => video.play();
+        document.querySelector(`[wm-pause=${id}]`).onclick = e => video.pause();
+
+        setInterval(() => {
+            const percentual = (video.currentTime / video.duration) * 100;
+            const valorDiv = document.querySelector(`[wm-progresso=${id}] > div`);
+            valorDiv.style.width = `${percentual}%`;
+            valorDiv.innerHTML = `${percentual.toFixed(1)}%`;
+        }, 500);
+
+        // video.ontimeupdate = e => {
+        //     let valor = (100 / video.duration) * video.currentTime;
+        //     document.querySelector(`[wm-progresso=${id}] > div`).style.width = valor+'%';
+        // }
+    }
+
+    configurarVideo('meuVideo');
+</script>

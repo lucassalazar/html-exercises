@@ -1,0 +1,31 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="3-poucoDeCss.css">
+    <title>Um pouco de CSS</title>
+    <style>
+      h1 {
+        font-size: 20px;
+        /* 
+        display: none;
+        position: absolute;
+        top: 400px;
+        right: 400px; 
+        */
+      }
+
+      .fundoVermelho {
+        background-color:#f00; /* O mesmo que #ff0000 ou rgb (255,0,0)*/
+      }
+
+      .negrito {
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>CSS</h1>
+    <span id="textoPrincipal">Texto 1</span><br><br><br> <!--O id deve ser um identificador unico-->
+    <span class="fundoVermelho negrito">Texto 2</span><br><br> <!--A classe pode ser utilizada em vários elementos-->
+    <span class="fundoVermelho" wm-atrib>Texto 3</span> <!--document.querySelector('[wm-atrib]'), é melhor criar um atribuido caso seja necessário encontrar o elemento usando JS. Utilizar classe apenas para estilizar elementos usando CSS-->
+  </body>
+</html>
